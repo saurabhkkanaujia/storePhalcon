@@ -1,0 +1,64 @@
+<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+      <div class="position-sticky pt-3">
+<?php if ($this->session->loginUser->role == 'admin') {
+?>
+        <ul class="nav flex-column">
+        <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/frontend/home">
+              <span data-feather="home"></span>
+              Home
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/panel/dashboard">
+              <span data-feather="home"></span>
+              Dashboard
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/panel/allProducts">
+              <span data-feather="file"></span>
+              Products
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/panel/allUsers">
+              <span data-feather="users"></span>
+              Users
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/panel/orders">
+              <span data-feather="users"></span>
+              Orders
+            </a>
+          </li>
+        </ul>
+        
+<?php } elseif ($this->session->loginUser->role=='User') {
+?>      
+          <ul>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/frontend/home">
+              <span data-feather="home"></span>
+              Home
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/panel/dashboard">
+              <span data-feather="home"></span>
+              My Profile
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/panel/orders">
+              <span data-feather="home"></span>
+              My Orders
+            </a>
+          </li>          
+        </ul>
+
+<?php } ?>
+
+      </div>
+    </nav>

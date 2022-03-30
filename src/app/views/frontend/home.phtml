@@ -1,0 +1,64 @@
+<?php include 'header.phtml'; ?>
+
+    <div class="container">
+    
+    <!-- Jumbotron -->
+    <div id="intro" class="p-5 text-center bg-light">
+      <h1 class="mb-0 h4 display-3 fw-bold">Home</h1>
+      <div class="col-12 mt-5 text-start">
+                <a class="btn btn-success fs-4" aria-current="page" href="/panel/dashboard">
+                <span data-feather="home"></span>
+              Dashboard
+            </a>
+                <a class="btn btn-success fs-4" aria-current="page" href="/frontend/cart">
+              <span data-feather="home"></span>
+              Cart
+            </a>
+    </div>
+    </div>
+    <!-- Jumbotron -->
+        <section class="posts-listing">
+            <?php
+            foreach ($data as $key => $value) {
+                echo ' <article class="post-item">
+                <div class="post-item__inner">
+
+                    <div class="post-item__thumbnail-wrapper">
+                        <div class="post-item__thumbnail" style="background-image:url(image_url.jpg);"></div>
+                    </div>
+
+                    <div class="post-item__content-wrapper">
+                        <h2 class="post-item__title heading-size-4"><span>' . $value->name . '</span></h2>
+
+
+                        <div class="post-item__metas">
+                            <p class="post-item__meta post-item__meta--category">' . $value->category . '</p>
+                        </div>
+
+                        <div class="post-item__metas">
+                            <p class="post-item__meta post-item__meta--category">$' . $value->price . '</p>
+                        </div>
+
+                        <div class="post-item__excerpt">
+                        ' . $value->description . ' </div>
+                        <form action = "/frontend/addtocart" method = "POST">
+                            <input type="number" size="4" style = "width: 50%;" title="Qty" value="1" name="quantity" min="1" step="1">
+                            <button class="btn btn-success" type="submit" name="addtocart" value='.$value->id.'>Add to cart</button>
+                        </form>
+                        <div class="post-item__read-more-wrapper">
+                            <form action ="/frontend/singleProduct" method="POST">
+                                <button class="btn fs-4 post-item__read-more" name = "singleProduct" value=' . $value->id . '>Know More</button>
+                            </form>
+                        </div>
+
+                    </div>
+
+                </div>
+            </article>';
+            }
+            ?>
+           
+
+
+        </section>
+    </div>

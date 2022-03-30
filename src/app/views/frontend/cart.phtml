@@ -1,0 +1,68 @@
+<div class="container">
+    <div class="divTable div-hover">
+        
+            <div class="rowTable bg-primary text-white pb-2">
+                <div class="divTableCol">Product Name</div>
+                <div class="divTableCol">Category</div>
+                <div class="divTableCol">Quantity</div>
+                <div class="divTableCol">Price</div>
+                <div class="divTableCol">Total</div>
+                <div class="divTableCol">Actions</div>
+            </div>
+        
+            <?php
+                $sum = 0;
+                foreach ($this->session->cart as $key=>$value) {
+                    $sum = $sum+$value['product']->price * $value['qty'];
+                    echo '<div class="rowTable">
+                    <div class="divTableCol">
+                        <div class="media">
+                            <a class=" pull-left mr-2 ml-0" href="#"> <img class="img-fluid" src="" /></a>
+                            <div class="media-body">
+                                <h4 class="media-heading"><a href="#">'.$value['product']->name.'</a></h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="divTableCol"><strong class="label label-warning">'.$value['product']->category.'</strong></div>
+                    <div class="divTableCol">
+                        <form action = "/frontend/addtocart" method = "POST">
+                            <input type="number" size="4" style = "width: 50%;" title="Qty"  value='.$value['qty'].' name="quantity" min="1" step="1">
+                            <button class="btn btn-success" type="submit" name="addtocart" value='.$value['product']->id.'>Update</button>
+                        </form>
+
+                    </div>
+                    <div class="divTableCol"><strong>$'.$value['product']->price.'</strong></div>
+                    <div class="divTableCol"><strong>$'.$value['product']->price * $value['qty'].'</strong></div>
+                    <form action="/panel/removeProduct" method="POST">
+                        <div class="divTableCol">
+                            <button type="submit" name="rmProduct" value='.$value['product']->id.' class="btn btn-danger"><span class="fa fa-remove"></span> Remove</button>
+                        </div>
+                    </form>
+                </div>';
+                }
+            ?>
+            
+            
+           
+            <div class="rowTable">
+                <div class="divTableCol"></div>
+                <div class="divTableCol"></div>
+                <div class="divTableCol"></div>
+                <div class="divTableCol"><h3>Total</h3></div>
+                <div class="divTableCol">
+                    <h3><strong><?php echo "$".$sum; ?></strong></h3>
+                </div>
+            </div>
+            <div class="rowTable">
+                <div class="divTableCol"></div>
+                <div class="divTableCol"></div>
+                <div class="divTableCol"></div>
+                
+                <div class="divTableCol">
+                    <form action="/frontend/checkout" method="POST">
+                        <button type="submit" name="checkout" class="btn btn-success">Checkout</span></button>
+                    </form>
+                </div>
+            </div>        
+    </div>
+</div>
